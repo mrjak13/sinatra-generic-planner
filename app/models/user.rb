@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
   has_many :events
-  has_many :groups, through: :events
+  # has_many :groups, through: :events
 end
