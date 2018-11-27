@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :groups
+  has_many :events_groups
+  has_many :groups, throgh: :events_groups
 end
