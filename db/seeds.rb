@@ -9,6 +9,6 @@ ruby = Group.create(name: "Ruby")
 sinatra = Group.create(name: "Sinatra")
 rails = Group.create(name: "Rails")
 
-meeting = Event.create(user_id: todd.id, description: "Meeting", start_time: date_time1.hour, end_time: date_time1.hour+1)
+meeting = Event.create(user_id: todd.id, name: "Meeting", start_time: date_time1.hour, end_time: date_time1.hour+1)
 
-study_group = Event.create(user_id: archer.id, description: "Study Group", start_time: date_time2.hour, end_time: date_time2.hour+1)
+study_group = Event.create(user_id: archer.id, name: "Study Group", start_time: date_time2.hour, end_time: date_time2.hour+1)
