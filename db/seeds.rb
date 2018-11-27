@@ -2,8 +2,8 @@ date_time1 = DateTime.new(2018, 11, 27, 9)
 date_time2 = DateTime.new(2018, 11, 27, 11)
 
 
-todd = User.create(name: "Todd", email: "todd@todd.com", password_digest: "password")
-archer = User.create(name: "Archer", email: "archer@archer.com", password_digest: "password")
+todd = User.create(name: "Todd", email: "todd@todd.com", passwor: "password")
+archer = User.create(name: "Archer", email: "archer@archer.com", password: "password")
 
 ruby = Group.create(name: "Ruby")
 sinatra = Group.create(name: "Sinatra")
