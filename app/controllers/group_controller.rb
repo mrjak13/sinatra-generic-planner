@@ -18,7 +18,7 @@ class GroupController < ApplicationController
     end
   end
 
-  get 'groups/:id' do
+  get '/groups/:id' do
     @group = Group.find(params[:id])
     erb :'groups/show'
   end
