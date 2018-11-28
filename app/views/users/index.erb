@@ -1,3 +1,9 @@
 <h1>THIS IS THE USER INDEX PAGE</h1>
 
-<h3>Hello <%="#{@user.name}"%> what's on todays agenda?</h3>
+<h3>Hello <%="#{@user.name}"%> wthis is what's coming up!</h3>
+
+<ul>
+<% @user.events.each do |event| %>
+  <li><a href="/events/<%= event.id %>"><%= event.name %></a> on <%= event.date.strftime('%A %B %d') %> at <%= event.start_time.strftime('%I:%M %p') %></li>
+<% end %>
+</ul>
