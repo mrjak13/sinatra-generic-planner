@@ -1,0 +1,6 @@
+<h1>Events SHOW PAGE for <%="#{@event.name}"%></h1>
+
+<p>When: <%= "#{@event.date.strftime('%A %B %d')}"%></p>
+<p>From <%="#{@event.start_time.strftime('%I:%M %p')}"%> to <%="#{@event.end_time.strftime('%I:%M %p')}"%> </p>
+
+<p><%="#{@event.description}"%></p>
