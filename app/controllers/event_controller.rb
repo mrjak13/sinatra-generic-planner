@@ -9,25 +9,29 @@ class EventController < ApplicationController
   end
 
   post '/events' do
-    raise params.inspect
-    # binding.pry
+
     if logged_in?
       @user = current_user
-    elsif params.any?{|k,v| v == ""}
+    end
+
+    if params.any?{|k,v| v == ""}
       redirect to 'events/new'
     else
-      # binding.pry
       @event = Event.create(
         name: params[:name],
         user_id: @user.id,
         description: params[:description],
         date: params[:date].to_date,
-        start_time: params[:start].to_time,
-        end_time: params[:end].to_time
+        start_time: params[:start].to_time.hour,
+        end_time: params[:end].to_time.hour
         )
     end
+    redirect :"events/show/#{@event.id}"
+  end
 
-    erb :'events/show'
+  get '/events/show/:id' do
+    @event = Event.find(params[:id])
+    erb :'/events/show'
   end
 
 end
