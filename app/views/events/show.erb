@@ -1,8 +1,9 @@
-<h1>Events SHOW PAGE for <%="#{@event.name}"%></h1>
+<h1><%="#{@event.name}"%></h1>
+<h3>Hosted by: <%= "#{@event.user.name}"%></h3>
 
 <p>
 <% @event.groups.each do |group| %>
-<a href="groups/<%= group.id %>">#<%= "#{group.name}"%></a>
+<a href="/groups/<%= group.id %>">#<%= "#{group.name}"%></a>
 <% end %>
 </p>
 
