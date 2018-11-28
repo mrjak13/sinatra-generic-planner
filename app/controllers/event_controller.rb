@@ -5,6 +5,7 @@ class EventController < ApplicationController
   end
 
   get '/events/new' do
+    @groups = Group.all
     erb :'events/new'
   end
 
@@ -14,22 +15,26 @@ class EventController < ApplicationController
       @user = current_user
     end
 
-    if params.any?{|k,v| v == ""}
+    if params[:event].any?{|k,v| v == ""}
       redirect to 'events/new'
     else
       @event = Event.create(
-        name: params[:name],
+        name: params[:event][:name],
         user_id: @user.id,
-        description: params[:description],
-        date: params[:date].to_date,
-        start_time: params[:start].to_time.hour,
-        end_time: params[:end].to_time.hour
+        description: params[:event][:description],
+        date: params[:event][:date].to_date,
+        start_time: params[:event][:start].to_time,
+        end_time: params[:event][:end].to_time
         )
+
+      params[:event][:group_ids].each do |id|
+        @event.groups << Group.find(id)
+      end
     end
-    redirect :"events/show/#{@event.id}"
+    redirect :"events/#{@event.id}"
   end
 
-  get '/events/show/:id' do
+  get '/events/:id' do
     @event = Event.find(params[:id])
     erb :'/events/show'
   end
