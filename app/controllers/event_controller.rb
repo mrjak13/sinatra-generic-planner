@@ -39,4 +39,20 @@ class EventController < ApplicationController
     erb :'/events/show'
   end
 
+  get '/events/:id/edit' do
+    @event = Event.find(params[:id])
+    @groups = Group.all
+
+    erb :'/events/edit'
+  end
+
+  patch '/events/:id' do
+
+  end
+
+  delete '/events/:id' do
+    Event.find(params[:id]).delete
+    redirect to '/users/<%= current_user.id %>'
+  end
+
 end
