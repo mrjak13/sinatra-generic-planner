@@ -1,9 +1,9 @@
 <h1>EDIT EVENT HERE</h1>
 
-<form action="/events/<%= @event.id%>" method="post">
+<form action="/events/<%= @event.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="event_name">Event: </label>
-  <input type="text" name="event[name]" value="<%= @event.name %>" id="event_name">
+  <input type="text" name="event[name]" value="<%= @event.name %>" id="event_name" required>
 
 
   <!-- <input type="month" id="date" name="date" min="<%=Time.now.year%>-<%=Time.now.month%>" value="<%=Time.now.year%>-<%=Time.now.month%>"> -->
@@ -12,23 +12,27 @@
 
   <input type="date" id="event_date" name="event[date]"
          value="<%=Time.now.year%>-<%=Time.now.month%>-<%=Time.now.day%>"
-         min="<%=Time.now.year%>-<%=Time.now.month%>-<%=Time.now.day%>" >
+         min="<%=Time.now.year%>-<%=Time.now.month%>-<%=Time.now.day%>" required>
 
 
 
   <label for="event_start">Start Time:</label>
 
-  <input type="time" id="event_start" name="event[start]"
-         min="9:00" max="21:00" required>
+  <input id="event_start" type="time" name="event[start]" value="<%= @event.start_time.strftime('%I:%M') %>" required>
+  <!-- <input type="time" id="event_start" name="event[start]"
+         min="9:00" max="21:00" required> -->
 
   <!-- <span class="note">Earliest is 9:30 AM</span> -->
 
   <label for="event_end">End Time:</label>
 
-  <input type="time" id="event_end" name="event[end]"
-         min="9:00" max="21:00" required>
+  <input id="event_end" type="time" name="event[end]" value="<%= @event.end_time.strftime('%I:%M') %>" required>
 
-  <span class="note">Open from 9am to 9pm</span>
+
+  <!-- <input type="time" id="event_end" name="event[end]"
+         min="9:00" max="21:00" required> -->
+
+  <span>Open from 9am to 9pm</span>
 
 
   <br></br>
@@ -40,7 +44,7 @@
 
   <br><br>
 
-  <textarea name="event[description]" rows="8" cols="50" placeholder="<%= @event.description%>"></textarea>
+  <textarea name="event[description]" rows="8" cols="50" placeholder="<%= @event.description%>" required></textarea>
 
   <input type="submit" value="Edit Event">
 
