@@ -1,1 +1,7 @@
-<h1>THIS IS THE EVENT INDEX PAGE</h1>
+<h1>Check out what's going on!</h1>
+
+<ul>
+<% @events.each do |event| %>
+  <li><a href="/events/<%= event.id %>"><%= event.name %></a> on <%= event.date.strftime('%A %B %d') %> at <%= event.start_time.strftime('%I:%M %p') %> hosted by: <%= event.user.name %></li>
+<% end %>
+</ul>
