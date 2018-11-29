@@ -1,19 +1,19 @@
 class EventController < ApplicationController
 
   get '/events' do
+    redirect_if_not_logged_in
+    @events = Event.all
     erb :'/events/index'
   end
 
   get '/events/new' do
+    redirect_if_not_logged_in
     @groups = Group.all
     erb :'events/new'
   end
 
   post '/events' do
-
-    if logged_in?
-      @user = current_user
-    end
+    @user = current_user
 
     if params[:event].any?{|k,v| v == ""}
       redirect to 'events/new'
@@ -35,14 +35,19 @@ class EventController < ApplicationController
   end
 
   get '/events/:id' do
+    redirect_if_not_logged_in
     @event = Event.find(params[:id])
     erb :'/events/show'
   end
 
   get '/events/:id/edit' do
+    redirect_if_not_logged_in
     @event = Event.find(params[:id])
     @groups = Group.all
 
+    if @event.user_id != current_user.id
+      redirect to '/events'
+    end
     erb :'/events/edit'
   end
 
