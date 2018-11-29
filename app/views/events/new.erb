@@ -2,7 +2,7 @@
 
 <form action="/events" method="post">
   <label for="event_name">Event: </label>
-  <input type="text" name="event[name]" placeholder="ex: Meeting" id="event_name">
+  <input type="text" name="event[name]" placeholder="ex: Meeting" id="event_name" required>
 
 
   <!-- <input type="month" id="date" name="date" min="<%=Time.now.year%>-<%=Time.now.month%>" value="<%=Time.now.year%>-<%=Time.now.month%>"> -->
@@ -11,21 +11,27 @@
 
   <input type="date" id="event_date" name="event[date]"
          value="<%=Time.now.year%>-<%=Time.now.month%>-<%=Time.now.day%>"
-         min="<%=Time.now.year%>-<%=Time.now.month%>-<%=Time.now.day%>" >
+         min="<%=Time.now.year%>-<%=Time.now.month%>-<%=Time.now.day%>" required>
 
 
 
   <label for="event_start">Start Time:</label>
 
-  <input type="time" id="event_start" name="event[start]"
-         min="9:00" max="21:00" required>
+  <input id="event_start" type="time" name="event[start]" value="<%= Time.now.strftime('%I:%M') %>" required>
+
+
+  <!-- <input type="time" id="event_start" name="event[start]"
+         min="9:00" max="21:00" required> -->
 
   <!-- <span class="note">Earliest is 9:30 AM</span> -->
 
   <label for="event_end">End Time:</label>
 
-  <input type="time" id="event_end" name="event[end]"
-         min="9:00" max="21:00" required>
+  <input id="event_start" type="time" name="event[end]" value="<%= Time.now.strftime('%I:%M') %>" required>
+
+
+  <!-- <input type="time" id="event_end" name="event[end]"
+         min="9:00" max="21:00" required> -->
 
   <span class="note">Open from 9am to 9pm</span>
 
@@ -40,7 +46,7 @@
 
   <br><br>
 
-  <textarea name="event[description]" rows="8" cols="50" placeholder="Description"></textarea>
+  <textarea name="event[description]" rows="8" cols="50" placeholder="Description" required></textarea>
 
   <input type="submit" value="Create Event">
 
