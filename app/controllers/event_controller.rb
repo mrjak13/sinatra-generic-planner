@@ -48,16 +48,32 @@ class EventController < ApplicationController
     if @event.user_id != current_user.id
       redirect to '/events'
     end
+    binding.pry
     erb :'/events/edit'
   end
 
   patch '/events/:id' do
+    @event = Event.find(params[:id])
 
+    @event.update(
+      name: params[:event][:name],
+      description: params[:event][:description],
+      date: params[:event][:date].to_date,
+      start_time: params[:event][:start].to_time,
+      end_time: params[:event][:end].to_time
+      )
+
+    @event.groups.clear
+
+    params[:event][:group_ids].each do |id|
+      @event.groups << Group.find(id)
+    end
+    redirect to "events/#{@event.id}"
   end
 
   delete '/events/:id' do
     Event.find(params[:id]).delete
-    redirect to '/users/<%= current_user.id %>'
+    redirect to '/users'
   end
 
 end
