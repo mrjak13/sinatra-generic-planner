@@ -12,6 +12,13 @@
 
 <p><%="#{@event.description}"%></p>
 
+
 <form action="/events/<%= @event.id %>/edit" method="get">
   <input type="submit" value="Edit">
 </form>
+
+<form action="/events/<%= @event.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
+
