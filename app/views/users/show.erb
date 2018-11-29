@@ -7,3 +7,9 @@
   <li><a href="/events/<%= event.id %>"><%= event.name %></a> on <%= event.date.strftime('%A %B %d') %> at <%= event.start_time.strftime('%I:%M %p') %></li>
 <% end %>
 </ul>
+
+<br>
+
+<form action="/events/new" method="get">
+  <input type="submit" value="New Event">
+</form>
