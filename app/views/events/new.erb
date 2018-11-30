@@ -17,7 +17,7 @@
 
   <label for="event_start">Start Time:</label>
 
-  <input id="event_start" type="time" name="event[start]" value="<%= Time.now.strftime('%I:%M') %>" required>
+  <input id="event_start" type="time" name="event[start]" value="<%= DateTime.new(2018,1,1,9).strftime('%I:%M') %>" required>
 
 
   <!-- <input type="time" id="event_start" name="event[start]"
@@ -27,7 +27,7 @@
 
   <label for="event_end">End Time:</label>
 
-  <input id="event_start" type="time" name="event[end]" value="<%= Time.now.strftime('%I:%M') %>" required>
+  <input id="event_start" type="time" name="event[end]" value="<%= DateTime.new(2018,1,1,10).strftime('%I:%M') %>" required>
 
 
   <!-- <input type="time" id="event_end" name="event[end]"
