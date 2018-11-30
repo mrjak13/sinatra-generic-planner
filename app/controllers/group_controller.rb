@@ -7,7 +7,9 @@ class GroupController < ApplicationController
   end
 
   get '/groups/new' do
+    binding.pry
     redirect_if_not_logged_in
+    redirect_if_not_admin
     erb :'/groups/new'
   end
 
@@ -24,7 +26,26 @@ class GroupController < ApplicationController
   get '/groups/:id' do
     redirect_if_not_logged_in
     @group = Group.find(params[:id])
-    erb :'groups/show'
+    erb :'/groups/show'
+  end
+
+  get '/groups/:id/edit' do
+    redirect_if_not_logged_in
+    redirect_if_not_admin
+    @group = Group.find(params[:id])
+    erb :'/groups/edit'
+  end
+
+  patch '/groups/:id' do
+    @group = Group.find(params[:id])
+    @group.update(name: params[:name])
+    redirect to '/groups'
+  end
+
+  delete '/groups/:id' do
+    @group = Group.find(params[:id])
+    @group.delete
+    redirect to '/groups'
   end
 
 end
