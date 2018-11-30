@@ -24,12 +24,13 @@ class ApplicationController < Sinatra::Base
     if params.any?{|k,v| v == ""}
       redirect to '/signup'
     elsif User.find_by(email: params[:email])
+      flash[:message] = "Email already in use"
       redirect to '/login'
     else
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
     end
-    flash[:message] = "Thank you for signing up, please enjoy!"
+    flash[:message] = "Thank you for signing up, start by creating a new event!"
     redirect to '/users'
   end
 
@@ -44,6 +45,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect to '/users'
     else
+      flash[:message] = "Invalid email or password"
       redirect to '/login'
     end
   end
