@@ -29,6 +29,7 @@ class ApplicationController < Sinatra::Base
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
     end
+    flash[:message] = "Thank you for signing up, please enjoy!"
     redirect to '/users'
   end
 
@@ -63,14 +64,14 @@ class ApplicationController < Sinatra::Base
 
   def redirect_if_not_logged_in
     if !logged_in?
-      # flash[:errors] = "You must be logged in to view that page."
+      flash[:errors] = "You must be logged in to view that page."
       redirect to '/'
     end
   end
 
   def redirect_if_logged_in
     if logged_in?
-      # flash[:errors] = "You must be logged out to view that page."
+      flash[:errors] = "You must be logged out to view that page."
       redirect to '/users'
     end
   end

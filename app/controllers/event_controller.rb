@@ -48,7 +48,6 @@ class EventController < ApplicationController
     if @event.user_id != current_user.id
       redirect to '/events'
     end
-    binding.pry
     erb :'/events/edit'
   end
 
@@ -68,6 +67,7 @@ class EventController < ApplicationController
     params[:event][:group_ids].each do |id|
       @event.groups << Group.find(id)
     end
+    flash[:message] = "Update successful!"
     redirect to "events/#{@event.id}"
   end
 
