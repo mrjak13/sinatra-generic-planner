@@ -3,8 +3,8 @@
 <ul>
   <% @groups.each do |group| %>
     <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
-      <% group.events.each do |event| %>
-    <li><%= event.name %> hosted by: <%= event.user.name %></li>
+    <% group.events.last(3).each do |event| %>
+      <li><%= event.name %> hosted by: <%= event.user.name %></li>
     <%end%>
   <% end %>
 </ul>
