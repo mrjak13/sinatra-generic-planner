@@ -1,10 +1,19 @@
-<h1>Groups</h1>
+<h3>Groups</h3>
+
+<br>
 
 <ul>
   <% @groups.each do |group| %>
-    <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
+    <h5><a href="/groups/<%= group.id %>"><%= group.name %></a></h5>
     <% group.events.last(3).each do |event| %>
       <li><%= event.name %> hosted by: <%= event.user.name %></li>
     <%end%>
+    <br>
   <% end %>
 </ul>
+
+<% if current_user_is_admin? %>
+  <form action="/groups/new" method="get">
+    <input type="submit" value="New Group">
+  </form>
+<% end %>

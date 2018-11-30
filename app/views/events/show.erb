@@ -1,5 +1,5 @@
-<h1><%="#{@event.name}"%></h1>
-<h3>Hosted by: <%= "#{@event.user.name}"%></h3>
+<h3><%="#{@event.name}"%></h3>
+<h5>Hosted by: <%= "#{@event.user.name}"%></h5>
 
 <p>
 <% @event.groups.each do |group| %>

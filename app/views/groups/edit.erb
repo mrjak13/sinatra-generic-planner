@@ -1,11 +1,8 @@
-<h1> EDIT GROUP HERE </h1>
-
 <form action="/groups/<%= @group.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
 
   <label for="name">Group Name:</label>
   <input type="text" name="name" value="<%= @group.name %>">
 
-  <input type="submit" value="Edit group">
-
+  <input type="submit" value="Edit Group">
 </form>
