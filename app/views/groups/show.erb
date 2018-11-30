@@ -2,6 +2,19 @@
 
 <ul>
   <% @group.events.each do |event| %>
-    <li><a href="/events/<%= event.id %>"><%= event.name %></a></li>
+    <li><a href="/events/<%= event.id %>"><%= event.name %></a> on <%= event.date.strftime('%A %B %d') %> at <%= event.start_time.strftime('%I:%M %p') %> hosted by: <%= event.user.name %></li>
   <% end %>
 </ul>
+
+<% if current_user_is_admin? %>
+  <form action="/groups/<%= @group.id %>/edit" method="get">
+    <input type="submit" value="Edit">
+  </form>
+
+  <br>
+
+  <form action="/groups/<%= @group.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<% end %>
