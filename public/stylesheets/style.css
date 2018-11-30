@@ -1,0 +1,27 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #999999;
+    color: black;
+    text-align: center;
+}
+
+.nav {
+  background-color: #999999;
+}
+
+.nav-link {
+  color: yellow;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+
+
+#disabled {
+  color: white;
+}
