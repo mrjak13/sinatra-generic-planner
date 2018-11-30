@@ -1,7 +1,10 @@
-<h1>THIS IS THE GROUP INDEX PAGE</h1>
+<h1>Groups</h1>
 
 <ul>
   <% @groups.each do |group| %>
-  <li><%= group.name %></li>
+    <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
+      <% group.events.each do |event| %>
+    <li><%= event.name %> hosted by: <%= event.user.name %></li>
+    <%end%>
   <% end %>
 </ul>

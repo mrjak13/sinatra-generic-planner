@@ -8,15 +8,16 @@ class GroupController < ApplicationController
 
   get '/groups/new' do
     redirect_if_not_logged_in
-    erb :'/grpups/new'
+    erb :'/groups/new'
   end
 
   post '/groups' do
-    if logged_in? && !Group.find_by(name: params[:name])
+    if !Group.find_by(name: params[:name])
       Group.create(name: params[:name])
-      redirect to '/events/new'
+      redirect to '/groups'
     else
-      redirect to '/groups/new'
+      flash[:message] = "That group already exists"
+      redirect to '/groups'
     end
   end
 
