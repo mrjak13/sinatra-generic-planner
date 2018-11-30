@@ -1,10 +1,10 @@
 Welcome to a generic planner!
 
-  It started out as an event calendar then turned into this planner template.
+  It started out as an events calendar then turned into this planner template.
 
   Could be used for school, business, personal, etc...
 
 
-instructions:
+Instructions:
 
   clone, signup, and enjoy!
