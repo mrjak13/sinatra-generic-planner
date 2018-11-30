@@ -78,4 +78,15 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  def current_user_is_admin?
+    User.find_by(email: "admin@admin.com") == current_user ? true : false
+  end
+
+  def redirect_if_not_admin
+    if !current_user_is_admin?
+      flash[:errors] = "Action not authorized"
+      redirect to '/users'
+    end
+  end
+
 end
