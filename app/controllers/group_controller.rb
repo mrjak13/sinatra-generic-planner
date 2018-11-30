@@ -7,7 +7,6 @@ class GroupController < ApplicationController
   end
 
   get '/groups/new' do
-    binding.pry
     redirect_if_not_logged_in
     redirect_if_not_admin
     erb :'/groups/new'
