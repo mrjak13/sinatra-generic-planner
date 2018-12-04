@@ -13,7 +13,8 @@ class GroupController < ApplicationController
   end
 
   post '/groups' do
-    if !Group.find_by(name: params[:name])
+    redirect_if_not_admin
+    if !Group.find_by(name: params[:name]) && current_user_is_admin?
       Group.create(name: params[:name])
       redirect to '/groups'
     else
@@ -36,12 +37,14 @@ class GroupController < ApplicationController
   end
 
   patch '/groups/:id' do
+    redirect_if_not_admin
     @group = Group.find(params[:id])
     @group.update(name: params[:name])
     redirect to '/groups'
   end
 
   delete '/groups/:id' do
+    redirect_if_not_admin
     @group = Group.find(params[:id])
     @group.delete
     redirect to '/groups'

@@ -25,7 +25,7 @@ class EventController < ApplicationController
         date: params[:event][:date].to_date,
         start_time: params[:event][:start].to_time,
         end_time: params[:event][:end].to_time
-        )
+        ) # current_user.events.create(params[:event])
 
       params[:event][:group_ids].each do |id|
         @event.groups << Group.find(id)
@@ -54,26 +54,36 @@ class EventController < ApplicationController
   patch '/events/:id' do
     @event = Event.find(params[:id])
 
-    @event.update(
-      name: params[:event][:name],
-      description: params[:event][:description],
-      date: params[:event][:date].to_date,
-      start_time: params[:event][:start].to_time,
-      end_time: params[:event][:end].to_time
-      )
+    if @event.user.id == current_user.id
 
-    @event.groups.clear
+      @event.update(
+        name: params[:event][:name],
+        description: params[:event][:description],
+        date: params[:event][:date].to_date,
+        start_time: params[:event][:start].to_time,
+        end_time: params[:event][:end].to_time
+        )
 
-    params[:event][:group_ids].each do |id|
-      @event.groups << Group.find(id)
-    end
+      @event.groups.clear
+
+      params[:event][:group_ids].each do |id|
+        @event.groups << Group.find(id)
+      end
     flash[:message] = "Update successful!"
     redirect to "events/#{@event.id}"
+    else
+      redirect to '/events'
+    end
   end
 
   delete '/events/:id' do
-    Event.find(params[:id]).delete
-    redirect to '/users'
+    @event = Event.find(params[:id])
+    if @event.user.id == current_user.id
+      Event.find(params[:id]).delete
+      redirect to '/users'
+    else
+      redirect to '/events'
+    end
   end
 
 end

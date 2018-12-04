@@ -23,6 +23,7 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     if params.any?{|k,v| v == ""}
       redirect to '/signup'
+      # add flash message
     elsif User.find_by(email: params[:email])
       flash[:message] = "Email already in use"
       redirect to '/login'
@@ -57,11 +58,11 @@ class ApplicationController < Sinatra::Base
   end
 
   def current_user
-    User.find(session[:user_id])
+    User.find(session[:user_id]) # .find_by(id: session[:user_id])
   end
 
   def logged_in?
-    !!session[:user_id]
+    !!session[:user_id] # !!current_user
   end
 
   def redirect_if_not_logged_in
