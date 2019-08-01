@@ -59,7 +59,7 @@ Log in and get planning!
 ## Built With
 
 * [Sinatra](http://sinatrarb.com/) - The web framework used
-* [Bootstrap](https://getbootstrap.com/) - CSS Framework
+* [Bootstrap](https://getbootstrap.com/) - CSS Library
 
 ## License
 
